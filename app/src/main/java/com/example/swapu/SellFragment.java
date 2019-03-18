@@ -69,7 +69,7 @@ public class SellFragment extends Fragment {
 
         // Create an ArrayAdapter using the string array and a default spinner
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-                .createFromResource(getActivity(), R.array.product_type,
+                .createFromResource(getActivity(), R.array.product_type_array,
                         android.R.layout.simple_spinner_item);
 
         // Specify the layout to use when the list of choices appears
@@ -110,9 +110,7 @@ public class SellFragment extends Fragment {
                 String zipcode = location.getText().toString();
                 String cityState = city.getText().toString();
                 boolean trade = (tradeSwitch.isChecked()?true:false);
-//                if(tradeSwitch.isChecked()){
-//                    trade = true;
-//                }
+                /*added input validation to check if product is empty*/
                 if(TextUtils.isEmpty(title)) {
                     titleTextView.setError("Empty title");
                 }else if(TextUtils.isEmpty(desc)){
@@ -177,13 +175,6 @@ public class SellFragment extends Fragment {
                     product.put("username", currentUser.getUsername());
 
                     product.saveInBackground();
-//                    ParseObject transaction = new ParseObject("Transaction");
-//                    transaction.put("username", currentUser.getUsername());
-//                    transaction.put("productId", "hghghh");
-//                    transaction.saveEventually();
-
-
-
                 }
             }
 
