@@ -163,6 +163,7 @@ public class SellFragment extends Fragment {
                     ParseUser currentUser = ParseUser.getCurrentUser();
                     //  ParseObject product = new ParseObject("Product");
                     final ParseObject product = new ParseObject("Product");
+                    // added validation to check if the user selected an image
                     if(imageButton.getTag().toString().equals("2")) {
                         product.put("download", conversionBitmapParseFile(bitmap));
                     }else{
