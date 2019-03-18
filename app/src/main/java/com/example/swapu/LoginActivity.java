@@ -36,8 +36,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View view) {
+        /*added validation to check if email is blank*/
         if( TextUtils.isEmpty(edEmail.getText())){
-            edEmail.setError( "Email is required!" );
+            edEmail.setError( "Email is required!" );            
         }else if( TextUtils.isEmpty(edPassword.getText())){
             edPassword.setError( "Password is required!" );
         }else{
