@@ -113,6 +113,7 @@ public class SellFragment extends Fragment {
                 /*added input validation to check if product is empty*/
                 if(TextUtils.isEmpty(title)) {
                     titleTextView.setError("Empty title");
+                    /*added input validation to check if product description is empty*/
                 }else if(TextUtils.isEmpty(desc)){
                     descTextView.setError("Empty description");
                 }else if(TextUtils.isEmpty(location.getText().toString())) {
