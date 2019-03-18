@@ -51,12 +51,16 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+             /*added validation to check if name is blank*/    
                 if( TextUtils.isEmpty(edName.getText())){
                     edName.setError( "Name is required!" );
+             /*added validation to check if email is blank*/
                 }else if( TextUtils.isEmpty(edEmail.getText())){
                     edEmail.setError( "Email is required!" );
+             /*added validation to check if passowrd is blank*/
                 }else if( TextUtils.isEmpty(edPassword.getText())){
                     edPassword.setError( "Password is required!" );
+            /*added validation to check if confirm password is blank*/
                 }else if( TextUtils.isEmpty(edConfirmPassword.getText())){
                     edConfirmPassword.setError( "Confirm password is required!" );
                 }else if(!edPassword.getText().toString().equals(edConfirmPassword.getText().toString())){
