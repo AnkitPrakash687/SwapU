@@ -23,6 +23,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
     }
 
     public void resetPassword(View view) {
+        /*added validation to check if email is blank*/
         if( TextUtils.isEmpty(edEmail.getText())){
             edEmail.setError( "Email is required!" );
         }else {
