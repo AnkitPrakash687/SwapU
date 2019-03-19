@@ -42,7 +42,7 @@ public static String data;
         ParseUser currentUser = ParseUser.getCurrentUser();
         Fragment selectedFragment = new HomeFragment();
 
-        GPSTracker gps = new GPSTracker(this);
+     /*   GPSTracker gps = new GPSTracker(this);
         double latitude = gps.getLatitude();
         double longitude = gps.getLongitude();
         if(latitude != 0 && longitude != 0) {
@@ -59,7 +59,7 @@ public static String data;
             String state = addresses.get(0).getAdminArea();
             String zip = addresses.get(0).getPostalCode();
             String country = addresses.get(0).getCountryName();
-        }
+        }*/
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();}
 //        tvName = findViewById(R.id.tvName);
