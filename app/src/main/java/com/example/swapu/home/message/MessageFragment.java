@@ -146,7 +146,7 @@ public class MessageFragment extends Fragment{
         }
     }
 
-    void getReceiverDetail(String receiver, String objectId){
+    void getReceiverDetail(final String receiver, final String objectId) {
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("username", receiver);
@@ -154,7 +154,7 @@ public class MessageFragment extends Fragment{
 
             @Override
             public void done(List<ParseUser> objects, final ParseException e) {
-                String receiverName = objects.get(0).getString("name");
+                final String receiverName = objects.get(0).getString("name");
                 ParseFile file = objects.get(0).getParseFile("profilePic");
                 if (file != null) {
                     file.getDataInBackground(new GetDataCallback() {
@@ -178,7 +178,7 @@ public class MessageFragment extends Fragment{
         });
     }
 
-    void setMessageAdapter(Bitmap profilePic, String receiverName, String receiver, String objectId){
+    void setMessageAdapter(final Bitmap profilePic, final String receiverName, final String receiver, final String objectId) {
         ParseQuery<ParseObject> query = new ParseQuery<>("Message");
         query.whereEqualTo("threadId", objectId);
         query.whereEqualTo("senderId", receiver);
