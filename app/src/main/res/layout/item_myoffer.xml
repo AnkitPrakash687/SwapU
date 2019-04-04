@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_width="380dp"
+        android:layout_height="150dp"
+        card_view:cardCornerRadius="10dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            >
+            <ImageView
+                android:id="@+id/image_imageview"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:padding="5dp" />
+            <TextView
+                android:id="@+id/title_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:hint="Title"
+                android:textSize="22sp"
+                android:layout_toRightOf="@id/image_imageview"
+                android:layout_centerVertical="true"
+                android:paddingLeft="20dp"/>
+
+            <TextView
+                android:id="@+id/date_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:hint="Post date"
+                android:gravity="right"
+                android:textSize="15sp"
+                />
+
+            <TextView
+                android:id="@+id/price_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_textview"
+                android:layout_alignLeft="@id/title_textview"
+                android:textColor="@color/black"
+                android:paddingLeft="20dp"
+                android:hint="Price"
+                android:gravity="left"
+                android:textSize="22sp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
