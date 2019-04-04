@@ -9,16 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.swapu.model.ItemModel;
 import com.example.swapu.R;
+import com.example.swapu.model.ItemModel;
 
 import java.util.List;
+
+import static com.example.swapu.common.ComUtils.getFormattedDate;
 
 public class ItemAdapter extends ArrayAdapter<ItemModel> {
     Context context;
     int layoutResourceId;
     List<ItemModel> item = null;
-    public ItemAdapter( Context context, int resource, List<ItemModel> objects) {
+
+    public ItemAdapter(Context context, int resource, List<ItemModel> objects) {
         super(context, 0, objects);
         this.layoutResourceId = resource;
         this.context = context;
@@ -33,10 +36,13 @@ public class ItemAdapter extends ArrayAdapter<ItemModel> {
         ImageView imageview = convertView.findViewById(R.id.image_imageview);
         TextView title = convertView.findViewById(R.id.title_textview);
         TextView date = convertView.findViewById(R.id.date_textview);
+        TextView price = convertView.findViewById(R.id.price_textview);
         ItemModel itemModel = item.get(position);
         imageview.setImageBitmap(itemModel.getImage());
         title.setText(itemModel.getTitle());
-        date.setText(itemModel.getPostDate().toString());
+        title.setTag(itemModel.getObjectId());
+        date.setText(getFormattedDate(itemModel.getPostDate()));
+        price.setText("$" + itemModel.getPrice());
         return convertView;
     }
 }
