@@ -1,5 +1,4 @@
 package com.example.swapu.home.account;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,11 +31,9 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import static com.example.swapu.common.ComUtils.getFormattedDate;
 
 public class AccountFragment extends Fragment {
