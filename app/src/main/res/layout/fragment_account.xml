@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/myoffer_textview"
         android:padding="10dp"
-        android:divider="@android:color/transparent"
-        ></ListView>
+        android:divider="@android:color/transparent">
+    </ListView>
 
 </RelativeLayout>
