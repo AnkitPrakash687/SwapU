@@ -10,7 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
         android:layout_marginBottom="10dp">
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,7 +40,6 @@
         android:drawableEnd="@drawable/ic_iconmonstr_magnifier_4"
         android:textAllCaps="false" />
 </RelativeLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
