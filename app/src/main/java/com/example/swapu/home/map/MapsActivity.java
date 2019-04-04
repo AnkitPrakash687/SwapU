@@ -2,16 +2,19 @@ package com.example.swapu.home.map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.swapu.R;
@@ -31,24 +34,25 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback { //, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback { //, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private Location currentLocation;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private static final int LOCATION_REQUEST_CODE = 101;
     GoogleMap gMap;
     LatLng latLng;
-    boolean zipcode = false;
     String locationDetails;
+    EditText zipCodeEt;
+    String zipCode;
+    TextView currentLocationTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        currentLocationTv = findViewById(R.id.current_location_tv);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-//        SupportMapFragment supportMapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-//        supportMapFragment.getMapAsync(MapsActivity.this);
-  //      fetchLastLocation();
-
+        fetchLastLocation();
+        zipCodeEt = findViewById(R.id.zipcode_edittext);
         Button getlocation = findViewById(R.id.get_location);
         Button zipcodeSearch = findViewById(R.id.get_location_zipcode);
         Button apply = findViewById(R.id.apply_button);
@@ -56,14 +60,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 fetchLastLocation();
-
-
             }
         });
         zipcodeSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                zipcode=true;
                 EditText zipcode = findViewById(R.id.zipcode_edittext);
                 getLocationFromZipcode(zipcode.getText().toString());
 
@@ -73,6 +74,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (locationDetails != null) {
+                    String[] place = locationDetails.split(",");
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("location", place[0] + ", " + place[1]);
+                    editor.putString("zipCode", place[2]);
+                    editor.commit();
+
+                }
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("location",locationDetails);
                 setResult(Activity.RESULT_OK,returnIntent);
@@ -97,8 +108,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     latLng = new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude());
                     SupportMapFragment supportMapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
                     supportMapFragment.getMapAsync(MapsActivity.this);
-                    zipcode = false;
                     Toast.makeText(MapsActivity.this,currentLocation.getLatitude()+" "+currentLocation.getLongitude(),Toast.LENGTH_SHORT).show();
+//                    try {
+//                        getPlaceDetail(new LatLng(currentLocation.getLatitude(),currentLocation.getLongitude()));
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
 
                 }else{
                     Toast.makeText(MapsActivity.this,"No Location recorded",Toast.LENGTH_SHORT).show();
@@ -108,7 +123,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         //MarkerOptions are used to create a new Marker.You can specify location, title etc with MarkerOptions
         MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("You are Here");
         CameraUpdate yourLocation = CameraUpdateFactory.newLatLngZoom(latLng, 10);
@@ -141,8 +155,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             List<Address> myList = myLocation.getFromLocationName(zipcode, 5);
             if(myList.size()>0) {
                 latLng = new LatLng(myList.get(0).getLatitude(), myList.get(0).getLongitude());
-                    SupportMapFragment supportMapFragment= (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-                    supportMapFragment.getMapAsync(MapsActivity.this);
+                SupportMapFragment supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+                supportMapFragment.getMapAsync(MapsActivity.this);
 
             }else{
                 Toast.makeText(MapsActivity.this,"No zip found",Toast.LENGTH_SHORT).show();
@@ -153,14 +167,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
+
     private void getPlaceDetail(LatLng latLng) throws IOException {
         Geocoder myLocation = new Geocoder(getApplicationContext(), Locale.getDefault());
         List<Address> myList = myLocation.getFromLocation(latLng.latitude,latLng.longitude,5);
-       Address address = myList.get(0);
-       String addressline = address.getLocality() + ", " +address.getAdminArea();
-       Button location = findViewById(R.id.get_location);
-       location.setText(addressline);
-       locationDetails = addressline + ", "+address.getPostalCode()+", "+address.getCountryName();
+        Address address = myList.get(0);
+        String addressline = address.getLocality() + ", " + address.getAdminArea();
+        Button location = findViewById(R.id.get_location);
+        currentLocationTv.setText(addressline);
+        zipCode = address.getPostalCode();
+        zipCodeEt.setText(zipCode);
+        locationDetails = addressline + ", " + address.getPostalCode() + ", " + address.getCountryName();
     }
 
 }
