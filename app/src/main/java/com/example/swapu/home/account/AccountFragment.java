@@ -18,10 +18,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.swapu.App;
-import com.example.swapu.cache.ItemModelEntry;
-import com.example.swapu.cache.MyStorage;
 import com.example.swapu.common.AppStatus;
 import com.example.swapu.common.ComUtils;
 import com.example.swapu.home.ItemAdapter;
@@ -35,11 +32,9 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import static com.example.swapu.common.ComUtils.getFormattedDate;
 
 public class AccountFragment extends Fragment {
