@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
 
-    <TextView
-        android:id="@+id/message_title"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="Messages"/>
-
+        android:layout_height="50dp"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Messages"
+            android:textSize="24sp"
+            android:padding="10dp"
+            android:gravity="center"/>
+    </RelativeLayout>
     <ListView
+        android:id="@+id/messages_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/message_title">
-    </ListView>
-</RelativeLayout>
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp"
+        />
+</LinearLayout>
