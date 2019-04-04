@@ -1,4 +1,4 @@
-package com.example.swapu;
+package com.example.swapu.login;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -15,7 +15,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.LogInCallback;
+import com.example.swapu.R;
+import com.example.swapu.home.HomeActivity;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;

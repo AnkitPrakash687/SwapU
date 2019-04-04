@@ -1,29 +1,17 @@
-package com.example.swapu;
+package com.example.swapu.home;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.location.Address;
-import android.location.Geocoder;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.example.swapu.home.account.AccountFragment;
+import com.example.swapu.home.message.MessageFragment;
 import com.example.swapu.R;
-import com.parse.Parse;
+import com.example.swapu.home.sell.SellFragment;
 import com.parse.ParseUser;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 public static String data;
@@ -33,33 +21,12 @@ public static String data;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         BottomNavigationView bottomNav = findViewById(R.id.navigation);
-
-        FetchData process = new FetchData();
-        process.execute();
         String data1 = data;
 //        TextView sample = findViewById(R.id.sample_textview);
 //        sample.setText(data);
         ParseUser currentUser = ParseUser.getCurrentUser();
         Fragment selectedFragment = new HomeFragment();
 
-     /*   GPSTracker gps = new GPSTracker(this);
-        double latitude = gps.getLatitude();
-        double longitude = gps.getLongitude();
-        if(latitude != 0 && longitude != 0) {
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-
-            List<Address> addresses = null;
-            try {
-                addresses = geocoder.getFromLocation(latitude, longitude, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String zip = addresses.get(0).getPostalCode();
-            String country = addresses.get(0).getCountryName();
-        }*/
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();}
 //        tvName = findViewById(R.id.tvName);

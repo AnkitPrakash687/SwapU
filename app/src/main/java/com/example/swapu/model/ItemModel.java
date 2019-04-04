@@ -1,4 +1,4 @@
-package com.example.swapu;
+package com.example.swapu.model;
 
 import android.graphics.Bitmap;
 
