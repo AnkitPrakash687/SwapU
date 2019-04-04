@@ -130,7 +130,7 @@ public class ProductActivity  extends AppCompatActivity {
 
                     }else{
 
-                        ParseObject chatThread = new ParseObject("ChatThread");
+                        final ParseObject chatThread = new ParseObject("ChatThread");
                         chatThread.put("senderUsername", sender);
                         chatThread.put("recipientUsername", receiver);
                         chatThread.saveInBackground(new SaveCallback() {
@@ -159,7 +159,7 @@ public class ProductActivity  extends AppCompatActivity {
         });
     }
 
-    private void getUserName(String username, Intent intent) {
+    private void getUserName(String username, final Intent intent) {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("username", username);
         query.findInBackground(new FindCallback<ParseUser>() {
