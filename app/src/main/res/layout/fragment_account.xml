@@ -26,6 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="230dp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
         android:text="Name: "/>
     <TextView
         android:id="@+id/account_doj"
@@ -33,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/account_name"
         android:layout_centerHorizontal="true"
+        android:textSize="12sp"
         android:text="Date Joined: "/>
     <Button
         android:layout_width="wrap_content"
@@ -50,9 +53,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="24dp"/>
+
+
     <ListView
+        android:id="@+id/myoffer_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/myoffer_textview"></ListView>
+        android:layout_below="@id/myoffer_textview"
+        android:padding="10dp"
+        android:divider="@android:color/transparent"
+        ></ListView>
 
 </RelativeLayout>
