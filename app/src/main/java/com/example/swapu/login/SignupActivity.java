@@ -1,13 +1,15 @@
 package com.example.swapu.login;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -27,20 +29,21 @@ import java.util.Locale;
 
 public class SignupActivity extends AppCompatActivity {
 
-    EditText edName, edEmail, edPassword, edConfirmPassword, location;
+    EditText edName, edEmail, edPassword, edConfirmPassword, zipCode;
     Button signup;
+    TextView city;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
+        city = findViewById(R.id.city_signup_textview);
         edName = findViewById(R.id.edName);
         edEmail = findViewById(R.id.edEmail);
         edPassword = findViewById(R.id.edPassword);
         edConfirmPassword = findViewById(R.id.edConfirmPassword);
-        location = findViewById(R.id.location_signup_edittext);
+        zipCode = findViewById(R.id.location_signup_edittext);
         signup = findViewById(R.id.signup_button);
-        location.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        zipCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
@@ -52,7 +55,7 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             /*added validation to check if name is blank*/    
+             /*added validation to check if name is blank*/
                 if( TextUtils.isEmpty(edName.getText())){
                     edName.setError( "Name is required!" );
              /*added validation to check if email is blank*/
@@ -66,8 +69,11 @@ public class SignupActivity extends AppCompatActivity {
                     edConfirmPassword.setError( "Confirm password is required!" );
                 }else if(!edPassword.getText().toString().equals(edConfirmPassword.getText().toString())){
                     Toast.makeText(SignupActivity.this, "Passwords are not the same!", Toast.LENGTH_LONG).show();
-                }else if(TextUtils.isEmpty(location.getText().toString())){
-                    location.setError("Empty zipcode");
+                }
+                else if(TextUtils.isEmpty(zipCode.getText().toString())){
+                    zipCode.setError("Empty zipcode");
+                }else if(city.getText().toString().equals("Wrong Zip code")){
+                    zipCode.setError("Wrong zipcode");
                 }
                 else{
                     TextView city = findViewById(R.id.city_signup_textview);
@@ -82,6 +88,13 @@ public class SignupActivity extends AppCompatActivity {
                     user.setEmail(edEmail.getText().toString().trim());
                     user.setPassword(edPassword.getText().toString());
                     user.put("name", edName.getText().toString().trim());
+                    user.put("location", city.getText().toString());
+                    user.put("zipCode", Integer.parseInt(zipCode.getText().toString()));
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("location", city.getText().toString());
+                    editor.putString("zipCode", zipCode.getText().toString());
+                    editor.commit();
                     user.signUpInBackground(new SignUpCallback() {
                         @Override
                         public void done(ParseException e) {
@@ -105,11 +118,10 @@ public class SignupActivity extends AppCompatActivity {
 
     private void checkLocation(){
         Geocoder myLocation = new Geocoder(getApplicationContext(), Locale.getDefault());
-        EditText location = findViewById(R.id.location_signup_edittext);
-        TextView city = findViewById(R.id.city_signup_textview);
+
         String locality;
         try {
-            List<Address> myList = myLocation.getFromLocationName(location.getText().toString(), 5);
+            List<Address> myList = myLocation.getFromLocationName(zipCode.getText().toString(), 5);
             if(myList.size()>0){
                 locality = myList.get(0).getLocality() + ", "+myList.get(0).getAdminArea();
                 city.setText(locality);
