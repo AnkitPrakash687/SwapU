@@ -1,5 +1,7 @@
 package com.example.swapu.home;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -60,8 +62,6 @@ public class HomeActivity extends AppCompatActivity {
         String data1 = data;
 //        TextView sample = findViewById(R.id.sample_textview);
 //        sample.setText(data);
-        ParseUser currentUser = ParseUser.getCurrentUser();
-
         //  Fragment selectedFragment = new HomeFragment();
         if (savedInstanceState == null){
             //  getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
