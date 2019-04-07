@@ -45,11 +45,16 @@
         android:layout_height="wrap_content"
         android:background="#EEF6FC">
 
-        <ListView
-        android:id="@+id/item_gridview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-            android:divider="@android:color/transparent"
-        />
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/pullToRefreshItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/item_gridview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@android:color/transparent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
     </RelativeLayout>
 </LinearLayout>

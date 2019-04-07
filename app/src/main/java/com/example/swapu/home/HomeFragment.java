@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -51,8 +52,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements GetNearByLocation.GetNearByAsyncTaskCallback {
     private View mContentView = null;
-    protected LocationManager locationManager;
-    protected LocationListener locationListener;
+    SwipeRefreshLayout pullToRefresh;
     protected Context context;
     TextView txtLat;
     String lat;
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment implements GetNearByLocation.GetNearB
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button location = mContentView.findViewById(R.id.location_button);
-
+        pullToRefresh = (SwipeRefreshLayout) mContentView.findViewById(R.id.pullToRefreshItem);
         // Setting toolbar as the ActionBar with setSupportActionBar() call
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -133,6 +133,16 @@ public class HomeFragment extends Fragment implements GetNearByLocation.GetNearB
             }
         });
 
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (dataList.size() > 0) {
+                    dataList.clear();
+                }
+                getNearByLocation();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
 
     }
 
