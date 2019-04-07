@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -20,9 +22,12 @@ import android.widget.Toast;
 import com.example.swapu.R;
 import com.example.swapu.home.HomeActivity;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -100,10 +105,27 @@ public class SignupActivity extends AppCompatActivity {
                         public void done(ParseException e) {
                             progress.dismiss();
                             if (e == null) {
-                                Toast.makeText(SignupActivity.this, "Welcome!", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
-                                startActivity(intent);
-                                isFinishing();
+                                ParseUser currentUser = ParseUser.getCurrentUser();
+                                Bitmap profilePic = BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                                        R.drawable.no_profile);
+                                currentUser.put("profilePic", conversionBitmapParseFile(profilePic));
+                                currentUser.saveInBackground(new SaveCallback() {
+                                    @Override
+                                    public void done(ParseException e) {
+                                        if (e == null) {
+                                            Toast.makeText(SignupActivity.this, "Welcome!", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                                            startActivity(intent);
+                                            isFinishing();
+
+                                        } else {
+
+                                            // Toast.makeText(getActivity(), e.getMessage()+" Error in posting item", Toast.LENGTH_LONG).show();
+                                        }
+                                        // Here you can handle errors, if thrown. Otherwise, "e" should be null
+                                    }
+                                });
+
                             } else {
                                 ParseUser.logOut();
                                 Toast.makeText(SignupActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -145,5 +167,13 @@ public class SignupActivity extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
+    }
+
+    public ParseFile conversionBitmapParseFile(Bitmap imageBitmap){
+        ByteArrayOutputStream byteArrayOutputStream=new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
+        byte[] imageByte = byteArrayOutputStream.toByteArray();
+        ParseFile parseFile = new ParseFile("image_file.png",imageByte);
+        return parseFile;
     }
 }
