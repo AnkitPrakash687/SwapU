@@ -38,6 +38,7 @@ public class MessageAdapter extends ArrayAdapter<MessageModel> {
         MessageModel messageModel = item.get(position);
         imageview.setImageBitmap(messageModel.getImage());
         name.setText(messageModel.getReceiverName());
+        name.setTag(messageModel.getObjectId());
         date.setText(messageModel.getPostDate());
         lastMessage.setText(messageModel.getLastMessage());
         return convertView;

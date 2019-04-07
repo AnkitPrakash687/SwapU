@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_marginBottom="5dp"
         android:background="@color/colorPrimary">
         <TextView
             android:layout_width="wrap_content"
@@ -19,11 +19,17 @@
             android:padding="10dp"
             android:gravity="center"/>
     </RelativeLayout>
-    <ListView
-        android:id="@+id/messages_gridview"
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        />
+        android:layout_height="wrap_content">
+
+        <ListView
+            android:id="@+id/messages_gridview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
