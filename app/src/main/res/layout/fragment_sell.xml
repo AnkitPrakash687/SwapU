@@ -10,7 +10,6 @@
     android:id="@+id/navigation_header_container"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:layout_marginBottom="@dimen/default_margin"
     android:background="@color/colorPrimary">
     <TextView
         android:layout_width="wrap_content"
@@ -150,7 +149,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:hint="Price"
-        android:layout_below="@id/desc_editText"
+        android:layout_below="@id/location_edittext"
         android:background="@drawable/edittext_background"
         android:padding="10dp"
         android:inputType="number"
@@ -159,14 +158,14 @@
 
     <EditText
         android:id="@+id/location_edittext"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Enter Zipcode"
         android:background="@drawable/edittext_background"
         android:padding="10dp"
         android:inputType="number"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/price_edittext"
+        android:layout_below="@id/desc_editText"
         android:layout_alignStart="@id/price_edittext"/>
     <TextView
         android:id="@+id/city_textview"
@@ -180,7 +179,7 @@
         android:id="@+id/trade_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/location_edittext"
+        android:layout_below="@id/price_edittext"
         android:layout_marginTop="20dp"
         android:layout_alignLeft="@id/location_edittext"
         android:textOff="No"
