@@ -45,10 +45,12 @@
             android:layout_marginBottom="10dp"
             android:padding="10dp"/>
 
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
         <EditText
             android:id="@+id/location_signup_edittext"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Enter Zipcode"
@@ -61,12 +63,12 @@
             android:id="@+id/city_signup_textview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="City, State"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edittext_background"
-            android:textSize="18dp"
-            android:padding="10dp" />
+            android:gravity="center"
+            android:layout_marginTop="9dp"
+            android:layout_toRightOf="@id/location_signup_edittext"
+            android:textSize="18dp" />
+
+</RelativeLayout>
 
         <EditText
             android:id="@+id/edPassword"
