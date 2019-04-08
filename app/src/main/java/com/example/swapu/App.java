@@ -1,6 +1,9 @@
 package com.example.swapu;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 
 import com.example.swapu.chat.Message;
 import com.parse.Parse;
@@ -12,10 +15,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 public class App extends Application {
+    public static final String CHANNEL_ID = "chatServiceChannel";
     @Override
     public void onCreate() {
         super.onCreate();
-
 
         ParseObject.registerSubclass(Message.class);
         // Use for monitoring Parse network traffic
@@ -35,7 +38,24 @@ public class App extends Application {
 
 
         ParseInstallation.getCurrentInstallation().saveInBackground();
+        createNotificationChannel();
     }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel1 = new NotificationChannel(
+                    CHANNEL_ID,
+                    "Channel 1",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            channel1.setDescription("This is Channel 1");
+
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel1);
+        }
+    }
+
     private String pincode;
     private String location;
 

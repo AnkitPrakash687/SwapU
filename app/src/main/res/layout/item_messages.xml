@@ -19,7 +19,7 @@
         android:layout_height="80dp"
         android:elevation="12dp"
         android:id="@+id/view2"
-        android:layout_marginRight="@dimen/default_margin"
+        android:layout_marginRight="10dp"
         card_view:cardCornerRadius="40dp"
         android:innerRadius="0dp"
         android:shape="ring"
@@ -33,7 +33,6 @@
 
     <TextView
         android:id="@+id/messages_name"
-        android:text="body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/view2"
@@ -42,12 +41,12 @@
        <TextView
            android:textSize="18sp"
            android:id="@+id/messages_lastMessage"
-           android:text="bidy"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           android:layout_width="150dp"
+           android:layout_height="60dp"
+           android:text="body"
            android:layout_below="@id/messages_name"
            android:layout_alignLeft="@id/messages_name"
-           android:textColor="@color/black"
+           android:textColor="@android:color/black"
            android:layout_weight="1">
     </TextView>
 
