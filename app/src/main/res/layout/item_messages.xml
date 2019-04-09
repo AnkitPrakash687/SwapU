@@ -26,7 +26,7 @@
         android:thicknessRatio="1.9">
     <ImageView
         android:id="@+id/message_pro_pic"
-        android:contentDescription="@string/profile_other"
+        android:contentDescription="profile picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
     </android.support.v7.widget.CardView>
