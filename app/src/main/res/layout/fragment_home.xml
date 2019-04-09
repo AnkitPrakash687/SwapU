@@ -16,8 +16,8 @@
             android:src="@drawable/logo" />
     <Button
         android:id="@+id/location_button"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
         android:text="Location"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_iconmonstr_location_3"
@@ -28,7 +28,8 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@id/location_button" />
+            android:layout_toLeftOf="@id/location_button"
+            android:cursorVisible="false" />
 
     <Button
         android:id="@+id/search_button"
