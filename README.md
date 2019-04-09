@@ -1,5 +1,8 @@
 # SwapU
+## About
+* If you’re a student on campus, chances are money is a little tight.  How will you ever be able to get those new shoes or that new game?    Look no further than SwapU!  Here, you can buy, sell, and trade items with your peers at your university!
 
+* The main activities for SwapU will be buying, selling, and trading goods.  Students will have the option of looking through a list of  items they may want to buy or they may search a specific thing.  Students will also be able to post their own goods for sale or for trade for other students to acquire.  The last main activity is trading, in which students may contact one another and agree to terms on a trade. 
 ## Contributors
 * Ankit Prakash
 * Robert Becthold
