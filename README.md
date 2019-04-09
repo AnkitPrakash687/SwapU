@@ -17,14 +17,16 @@ Target SDK version is 28
 1. Message a seller/potential buyer to discuss an item of interest
 
 ### Milestone 1 Accomplishments
-* User authentication
-* Item posting and viewing
-* Messaging between users
-* Google maps functionality for geofencing
+* Created the layout of the activity and fragments
+* Uploaded necessary drawable resources
 
 ### Milestone 2 Accomplishments
 * Input validation for all user input methods
 
 ### Milestone 3 Accomplishments
+* User authentication
+* Item posting and viewing
+* Messaging between users
+* Google maps functionality for geofencing
 * Layout changes
 * Other minor operational fixes and updates
