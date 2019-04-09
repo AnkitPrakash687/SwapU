@@ -5,11 +5,11 @@
 * Robert Becthold
 
 ### APK
-#### Uploaded to the project repository (swapu.apk)
+Uploaded to the project repository (swapu.apk)
 
 ### Supported Devices
-#### Any device with a minimum SDK version of 21
-#### Target SDK version is 28
+Any device with a minimum SDK version of 21
+Target SDK version is 28
 
 ### Sequence of Usage
 1. Login or create a new account
