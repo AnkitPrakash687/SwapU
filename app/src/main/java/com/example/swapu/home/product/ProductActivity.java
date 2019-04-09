@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,17 +31,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductActivity  extends AppCompatActivity {
+import static com.example.swapu.common.ComUtils.getResizedBitmap;
+
+public class ProductActivity extends AppCompatActivity {
     String title, objectId, zipCode;
     ImageView image;
-    TextView priceTv, locationTv, descTv;
+    TextView priceTv, locationTv, descTv, sellerNameTv, sellerLoactionTv;
     Button sendBtn;
     String receiver;
     String chatId;
     String sender;
-  String receiverName;
+    ImageButton sellerProPicIb;
+    String receiverName;
+
     @Override
-    public void onCreate( Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         Intent intent = getIntent();
@@ -54,17 +59,21 @@ public class ProductActivity  extends AppCompatActivity {
         image = findViewById(R.id.product_imageView);
         sendBtn = findViewById(R.id.send_message_button);
         sender = ParseUser.getCurrentUser().getUsername();
+        sellerNameTv = findViewById(R.id.sellerNameTv);
+        sellerLoactionTv = findViewById(R.id.sellerLocationTv);
+        sellerProPicIb = findViewById(R.id.sellerProPicIb);
         // The query will search for a ParseObject, given its objectId.
         // When the query finishes running, it will invoke the GetCallback
         // with either the object, or the exception thrown
         query.getInBackground(objectId, new GetCallback<ParseObject>() {
             Bitmap bitmap;
-            ProgressDialog progressDialog = showProgressDialog(ProductActivity.this,"loading");
+            ProgressDialog progressDialog = showProgressDialog(ProductActivity.this, "loading");
+
             public void done(ParseObject result, ParseException e) {
                 progressDialog.dismiss();
                 if (e == null) {
                     ParseFile file = result.getParseFile("download");
-                    priceTv.setText("$"+result.getInt("price"));
+                    priceTv.setText("$" + result.getInt("price"));
                     locationTv.setText(result.getString("location"));
                     descTv.setText(result.getString("description"));
                     receiver = result.getString("username");
@@ -85,15 +94,18 @@ public class ProductActivity  extends AppCompatActivity {
 
                             }
                         });
-                } else {
-                    // something went wrong
+                        getSellerInformation();
+                    } else {
+                        // something went wrong
+                    }
                 }
             }
-        }
+
 
         });
 
-        sendBtn.setOnClickListener(new View.OnClickListener(){
+
+        sendBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -102,33 +114,62 @@ public class ProductActivity  extends AppCompatActivity {
             }
 
         });
-}
+    }
+
+    private void getSellerInformation() {
+        ParseQuery<ParseUser> sellerQuery = ParseUser.getQuery();
+        sellerQuery.whereEqualTo("username", receiver);
+        sellerQuery.getFirstInBackground(new GetCallback<ParseUser>() {
+            @Override
+            public void done(ParseUser object, ParseException e) {
+                if (e == null) {
+                    sellerNameTv.setText(object.getString("name"));
+                    sellerLoactionTv.setText(object.getString("location"));
+                    ParseFile file = object.getParseFile("profilePic");
+                    file.getDataInBackground(new GetDataCallback() {
+                        @Override
+                        public void done(byte[] data, ParseException e) {
+                            if (e == null) {
+                                // Decode the Byte[] into
+                                // Bitmap
+                                Bitmap profilePic = BitmapFactory
+                                        .decodeByteArray(
+                                                data, 0,
+                                                data.length);
+                                sellerProPicIb.setImageBitmap(getResizedBitmap(profilePic, 200, 200));
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
 
     private void checkChatThread() {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("ChatThread");
-        query.whereContainedIn("recipientUsername", Arrays.asList(receiver,sender));
-        query.whereContainedIn("senderUsername", Arrays.asList(receiver,sender));
-        final ProgressDialog progressDialog = showProgressDialog(this,"loading data");
+        query.whereContainedIn("recipientUsername", Arrays.asList(receiver, sender));
+        query.whereContainedIn("senderUsername", Arrays.asList(receiver, sender));
+        final ProgressDialog progressDialog = showProgressDialog(this, "loading data");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 progressDialog.dismiss();
-                if(e==null){
+                if (e == null) {
 
-                    if(objects.size()>0){
-                       chatId = objects.get(0).getObjectId();
+                    if (objects.size() > 0) {
+                        chatId = objects.get(0).getObjectId();
                         Intent intent = new Intent(ProductActivity.this, ChatActivity.class);
                         intent.putExtra("receiver", receiver);
                         intent.putExtra("chatId", chatId);
                         intent.putExtra("sender", sender);
-                        if(ParseUser.getCurrentUser().getUsername().equals(receiver)){
+                        if (ParseUser.getCurrentUser().getUsername().equals(receiver)) {
                             getUserName(sender, intent);
-                        }else{
-                            getUserName(receiver,intent);
+                        } else {
+                            getUserName(receiver, intent);
                         }
 
 
-                    }else{
+                    } else {
 
                         final ParseObject chatThread = new ParseObject("ChatThread");
                         chatThread.put("senderUsername", sender);
@@ -136,16 +177,16 @@ public class ProductActivity  extends AppCompatActivity {
                         chatThread.saveInBackground(new SaveCallback() {
                             @Override
                             public void done(ParseException e) {
-                                if(e==null){
+                                if (e == null) {
                                     chatId = chatThread.getObjectId();
                                     Intent intent = new Intent(ProductActivity.this, ChatActivity.class);
                                     intent.putExtra("receiver", receiver);
                                     intent.putExtra("chatId", chatId);
                                     intent.putExtra("sender", sender);
-                                    if(ParseUser.getCurrentUser().getUsername().equals(receiver)){
+                                    if (ParseUser.getCurrentUser().getUsername().equals(receiver)) {
                                         getUserName(sender, intent);
-                                    }else{
-                                        getUserName(receiver,intent);
+                                    } else {
+                                        getUserName(receiver, intent);
                                     }
 
                                 }
