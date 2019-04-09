@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "428054383462",
+    "firebase_url": "https://swapu-b3ef8.firebaseio.com",
+    "project_id": "swapu-b3ef8",
+    "storage_bucket": "swapu-b3ef8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428054383462:android:1fcbbcb2f25274ce",
+        "android_client_info": {
+          "package_name": "com.example.swapu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF0eqbnpDO11QR_b9uxNrnSk6Fox_ddH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428054383462-bkqhl5pf43c53vgmp5n25c8g058kbk8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
