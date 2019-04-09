@@ -1,9 +1,11 @@
 package com.example.swapu.chat;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.swapu.R;
+import com.example.swapu.services.ChatService;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -29,6 +32,8 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import static com.example.swapu.App.CHANNEL_ID;
 import static com.example.swapu.common.ComUtils.getResizedBitmap;
 
 public class ChatActivity extends AppCompatActivity {
@@ -48,10 +53,12 @@ public class ChatActivity extends AppCompatActivity {
     EditText etMessage;
     ImageButton btSend;
     ImageButton chatProPicIb;
+    NotificationManagerCompat notificationManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        notificationManager = NotificationManagerCompat.from(this);
         setContentView(R.layout.activity_chat);
         Intent intent = getIntent();
         chatId = intent.getStringExtra("chatId");
@@ -90,11 +97,14 @@ public class ChatActivity extends AppCompatActivity {
                     public void onEvent(ParseQuery<Message> query, Message object) {
 
                         mMessages.add(0, object);
+                        String body = object.getBody();
+                        String name = object.getUserName();
 
                         // RecyclerView updates need to be run on the UI thread
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                startService();
                                 mAdapter.notifyDataSetChanged();
                                 rvChat.scrollToPosition(0);
                             }
@@ -103,6 +113,19 @@ public class ChatActivity extends AppCompatActivity {
                 });
     }
 
+    private void startService() {
+        Intent serviceIntent = new Intent(this, ChatService.class);
+        serviceIntent.putExtra("name", mMessages.get(mMessages.size() - 1).getUserName());
+        serviceIntent.putExtra("body", mMessages.get(mMessages.size() - 1).getBody());
+        startService(serviceIntent);
+
+    }
+
+    private void stopService(View view) {
+        Intent serviceIntent = new Intent(this, ChatService.class);
+        stopService(serviceIntent);
+
+    }
     private void setRecipientProPic() {
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("username", receiverId);

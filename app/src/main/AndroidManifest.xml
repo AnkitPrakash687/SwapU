@@ -48,6 +48,8 @@
         <activity android:name=".home.product.ProductActivity"></activity>
         <activity android:name=".chat.ChatActivity"></activity>
         <activity android:name=".home.SearchActivity"></activity>
+
+        <service android:name=".services.ChatService" />
     </application>
 
 
