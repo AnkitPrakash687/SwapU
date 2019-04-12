@@ -13,11 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.swapu.App;
+
 import com.example.swapu.common.AppStatus;
 import com.example.swapu.common.ComUtils;
 import com.example.swapu.home.ItemAdapter;
@@ -25,6 +25,7 @@ import com.example.swapu.login.LoginActivity;
 import com.example.swapu.R;
 import com.example.swapu.model.ItemModel;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import static com.example.swapu.common.ComUtils.getFormattedDate;
+import static com.example.swapu.common.ComUtils.getResizedBitmap;
 
 public class AccountFragment extends Fragment {
     @Nullable
@@ -45,6 +47,7 @@ public class AccountFragment extends Fragment {
     String accountName;
     String doj;
     TextView accountNameTv, dojTv;
+    ImageButton profilePic;
     public ArrayList<ItemModel> dataList = new ArrayList();
     @Nullable
 
@@ -60,14 +63,34 @@ public class AccountFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button logout = mContentView.findViewById(R.id.logout_button);
         accountNameTv = mContentView.findViewById(R.id.account_name);
+        profilePic = mContentView.findViewById(R.id.sellerProPicIb);
         dojTv = mContentView.findViewById(R.id.account_doj);
         myofferListview = mContentView.findViewById(R.id.myoffer_listview);
         myofferAdapter = new ItemAdapter(context, R.layout.item_myoffer, dataList);
-
         accountName = ParseUser.getCurrentUser().getString("name");
         doj = getFormattedDate(ParseUser.getCurrentUser().getCreatedAt());
         accountNameTv.setText(accountName);
         dojTv.setText("Joined: "+doj);
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("username", ParseUser.getCurrentUser().getUsername());
+        query.getFirstInBackground(new GetCallback<ParseUser>() {
+            @Override
+            public void done(ParseUser object, ParseException e) {
+                if (e == null) {
+                    ParseFile file = object.getParseFile("profilePic");
+                    file.getDataInBackground(new GetDataCallback() {
+                        @Override
+                        public void done(byte[] data, ParseException e) {
+                            Bitmap bitmap = BitmapFactory
+                                    .decodeByteArray(
+                                            data, 0,
+                                            data.length);
+                            profilePic.setImageBitmap(getResizedBitmap(bitmap, 500, 500));
+                        }
+                    });
+                }
+            }
+        });
         findObjects();
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
