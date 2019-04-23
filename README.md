@@ -1,4 +1,5 @@
-![alt text](https://github.com/AnkitPrakash687/SwapU/blob/master/app/src/main/res/drawable-hdpi/applogoswapu.png) # SwapU 
+ <img src="https://github.com/AnkitPrakash687/SwapU/blob/master/app/src/main/res/drawable-hdpi/applogoswapu.png" width="100" height="100" alt="accessibility text"> <h1> SwapU </h1>
+
 ## About
 If you’re a student on campus, chances are money is a little tight.  How will you ever be able to get those new shoes or that new game?    Look no further than SwapU!  Here, you can buy, sell, and trade items with your peers at your university!
 
