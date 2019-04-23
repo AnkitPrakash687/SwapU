@@ -22,6 +22,8 @@ import com.parse.ParseUser;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edEmail, edPassword;
+    private static final int TIME_INTERVAL = 2000;
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,5 +98,16 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
+        }
+
+        mBackPressed = System.currentTimeMillis();
+    }
 
 }
