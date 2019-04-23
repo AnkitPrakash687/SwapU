@@ -46,7 +46,7 @@ public class ItemAdapter extends ArrayAdapter<ItemModel> {
         date.setText(getFormattedDate(itemModel.getPostDate()));
         price.setText("$" + itemModel.getPrice());
         if (itemModel.isTrade()) {
-            tradeIb.setImageResource(R.drawable.trade);
+            tradeIb.setImageResource(R.drawable.applogoswapu);
         }
         return convertView;
     }
