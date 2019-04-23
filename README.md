@@ -22,12 +22,12 @@ Target SDK version is 28
 ### Milestone 1 Accomplishments
 * Created the layout of the activity and fragments
 * Uploaded necessary drawable resources
-#### Ankit Prakash - S533987
+#####  Ankit Prakash - S533987
 * Home activity and fragment layouts
 * Message fragment layouts
 * Map activity layout
 * Chat activity layout
-#### Robert Becthold - S526668
+#####  Robert Becthold - S526668
 * Product fragment layout
 * Product activity layout
 * Account fragment layout
@@ -37,6 +37,10 @@ Target SDK version is 28
 
 ### Milestone 2 Accomplishments
 * Input validation for all user input methods
+#####  Ankit Prakash - S533987
+* Product activity validation
+#####  Robert Becthold - S526668
+* Login activity validation
 
 ### Milestone 3 Accomplishments
 * User authentication
@@ -45,3 +49,13 @@ Target SDK version is 28
 * Google maps functionality for geofencing
 * Layout changes
 * Other minor operational fixes and updates
+#####  Ankit Prakash - S533987
+* Home fragment functionality
+* Message fragment functionality
+* Map activity functionality
+* Chat activity functionality
+#####  Robert Becthold - S526668
+* Product fragment functionality
+* Product activity functionality
+* Account fragment functionality
+* Login activity functionality
