@@ -26,10 +26,12 @@ Target SDK version is 28
 * Home activity and fragment layouts
 * Message fragment layouts
 * Map activity layout
+* Chat activity layout
 #### Robert Becthold - S526668
 * Product fragment layout
 * Product activity layout
 * Account fragment layout
+* Login activity layout
 
 
 
