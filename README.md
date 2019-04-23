@@ -21,15 +21,16 @@ Target SDK version is 28
 
 ### Milestone 1 Accomplishments
 * Created the layout of the activity and fragments
-** Ankit Prakash - S533987
-*** Home activity and fragment layouts
-*** Message fragment layouts
-*** Map activity layout
-** Robert Becthold - S526668
-*** Product fragment layout
-*** Product activity layout
-*** Account fragment layout
 * Uploaded necessary drawable resources
+#### Ankit Prakash - S533987
+* Home activity and fragment layouts
+* Message fragment layouts
+* Map activity layout
+#### Robert Becthold - S526668
+* Product fragment layout
+* Product activity layout
+* Account fragment layout
+
 
 
 ### Milestone 2 Accomplishments
