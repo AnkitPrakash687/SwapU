@@ -11,15 +11,25 @@ String title;
 Bitmap image;
 Date postDate;
     String price;
+    boolean trade;
 
     String objectId;
 
-    public ItemModel(String title, Date postDate, Bitmap image, String objectId, String price) {
+    public ItemModel(String title, Date postDate, Bitmap image, String objectId, String price, Boolean trade) {
     this.title = title;
     this.image = image;
     this.postDate = postDate;
         this.objectId = objectId;
         this.price = price;
+        this.trade = trade;
+    }
+
+    public boolean isTrade() {
+        return trade;
+    }
+
+    public void setTrade(boolean trade) {
+        this.trade = trade;
     }
 
     public String getPrice() {

@@ -66,7 +66,7 @@ public class AccountFragment extends Fragment {
         profilePic = mContentView.findViewById(R.id.sellerProPicIb);
         dojTv = mContentView.findViewById(R.id.account_doj);
         myofferListview = mContentView.findViewById(R.id.myoffer_listview);
-        myofferAdapter = new ItemAdapter(context, R.layout.item_myoffer, dataList);
+        myofferAdapter = new ItemAdapter(context, R.layout.gridview_items, dataList);
         accountName = ParseUser.getCurrentUser().getString("name");
         doj = getFormattedDate(ParseUser.getCurrentUser().getCreatedAt());
         accountNameTv.setText(accountName);
@@ -129,7 +129,7 @@ public class AccountFragment extends Fragment {
                             final Date postDate = objects.get(i).getCreatedAt();
                             final String objectId = objects.get(i).getObjectId();
                             final String price = Double.toString(objects.get(i).getDouble("price"));
-
+                            final Boolean trade = objects.get(i).getBoolean("trade");
                             if (file != null) {
                                 file.getDataInBackground(new GetDataCallback() {
                                     @Override
@@ -142,7 +142,7 @@ public class AccountFragment extends Fragment {
                                                             data, 0,
                                                             data.length);
                                             ItemModel itemModel = new ItemModel(title, postDate, ComUtils.getResizedBitmap(bitmap, 250,
-                                                    250), objectId, price);
+                                                    250), objectId, price, trade);
                                             dataList.add(itemModel);
                                             myofferListview.setAdapter(myofferAdapter);
                                             myofferAdapter.notifyDataSetChanged();

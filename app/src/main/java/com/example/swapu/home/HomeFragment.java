@@ -270,7 +270,7 @@ public class HomeFragment extends Fragment implements GetNearByLocation.GetNearB
                         final Date postDate = objects.get(i).getCreatedAt();
                         final String objectId = objects.get(i).getObjectId();
                         final String price = Double.toString(objects.get(i).getDouble("price"));
-
+                        final Boolean trade = objects.get(i).getBoolean("trade");
                         if (file != null) {
                             file.getDataInBackground(new GetDataCallback() {
                                 @Override
@@ -283,7 +283,7 @@ public class HomeFragment extends Fragment implements GetNearByLocation.GetNearB
                                                         data, 0,
                                                         data.length);
                                         ItemModel itemModel = new ItemModel(title, postDate, ComUtils.getResizedBitmap(bitmap, 250,
-                                                250), objectId, price);
+                                                250), objectId, price, trade);
                                         dataList.add(itemModel);
                                         itemGridview.setAdapter(itemAdapter);
                                         itemAdapter.notifyDataSetChanged();

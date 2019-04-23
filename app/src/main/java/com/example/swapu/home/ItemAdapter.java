@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,12 +38,16 @@ public class ItemAdapter extends ArrayAdapter<ItemModel> {
         TextView title = convertView.findViewById(R.id.title_textview);
         TextView date = convertView.findViewById(R.id.date_textview);
         TextView price = convertView.findViewById(R.id.price_textview);
+        ImageButton tradeIb = convertView.findViewById(R.id.trade_ib);
         ItemModel itemModel = item.get(position);
         imageview.setImageBitmap(itemModel.getImage());
         title.setText(itemModel.getTitle());
         title.setTag(itemModel.getObjectId());
         date.setText(getFormattedDate(itemModel.getPostDate()));
         price.setText("$" + itemModel.getPrice());
+        if (itemModel.isTrade()) {
+            tradeIb.setImageResource(R.drawable.trade);
+        }
         return convertView;
     }
 }
