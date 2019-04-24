@@ -9,7 +9,7 @@ The main activities for SwapU will be buying, selling, and trading goods.  Stude
 * Robert Becthold
 
 ### APK
-Uploaded to the project repository (swapu.apk)
+Uploaded to the project repository [swapu](https://github.com/AnkitPrakash687/SwapU/blob/master/swapu.apk)
 
 ### Supported Devices
 Any device with a minimum SDK version of 21
