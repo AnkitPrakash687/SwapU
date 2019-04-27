@@ -42,7 +42,7 @@ public class AccountFragment extends Fragment {
     @Nullable
     private View mContentView = null;
     protected Context context;
-    ItemAdapter myofferAdapter;
+    MyofferAdapter myofferAdapter;
     ListView myofferListview;
     String accountName;
     String doj;
@@ -66,7 +66,7 @@ public class AccountFragment extends Fragment {
         profilePic = mContentView.findViewById(R.id.sellerProPicIb);
         dojTv = mContentView.findViewById(R.id.account_doj);
         myofferListview = mContentView.findViewById(R.id.myoffer_listview);
-        myofferAdapter = new ItemAdapter(context, R.layout.gridview_items, dataList);
+        myofferAdapter = new MyofferAdapter(context, R.layout.item_myoffer, dataList);
         accountName = ParseUser.getCurrentUser().getString("name");
         doj = getFormattedDate(ParseUser.getCurrentUser().getCreatedAt());
         accountNameTv.setText(accountName);

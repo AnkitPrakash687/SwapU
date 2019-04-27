@@ -1,206 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<RelativeLayout
-    android:id="@+id/navigation_header_container"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@color/colorPrimary">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="Post"
-        android:textSize="24sp"
-        android:padding="10dp"
-        android:gravity="center"/>
-</RelativeLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@id/navigation_header_container">
+    <RelativeLayout
+        android:id="@+id/navigation_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Post"
+            android:textSize="24sp" />
+    </RelativeLayout>
 
     <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/navigation_header_container"
         android:layout_centerHorizontal="true"
-        android:layout_width="380dp"
-        android:layout_height="280dp"
+        android:layout_gravity="center"
         android:background="@color/cream"
         card_view:cardCornerRadius="10dp">
-<RelativeLayout
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-    <Space android:id="@+id/dummy"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
-    <LinearLayout
-        android:id="@+id/image_layout"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal">
-    <ImageButton
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageButton"
-        android:layout_centerHorizontal="true"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:background="#00000000"
-        android:layout_margin="10dp"
-        android:tag="0"
-        app:srcCompat="@drawable/image_upload"/>
-        <ImageButton
-            android:layout_width="120dp"
-            android:layout_height="150dp"
-            android:id="@+id/imageButton2"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:background="#00000000"
-            android:layout_margin="10dp"
-            android:tag="0"
-            app:srcCompat="@drawable/image_upload"/>
-        <ImageButton
-            android:layout_width="120dp"
-            android:layout_height="150dp"
-            android:id="@+id/imageButton3"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:background="#00000000"
-            android:layout_margin="10dp"
-            android:tag="0"
-            app:srcCompat="@drawable/image_upload"/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/capture_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_toLeftOf="@id/dummy"
-        android:text="Capture"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"
-        android:layout_below="@+id/image_layout" />
-
-    <Button
-        android:id="@+id/gallery_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Gallery"
-        android:layout_below="@+id/image_layout"
-        android:layout_toRightOf="@id/capture_button"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="10dp"/>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/title_editText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/capture_button"
-        android:layout_centerHorizontal="true"
-        android:hint="Title"
-        android:textColorHint="@color/colorAccent"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="20dp"/>
+                <RelativeLayout
 
-    <Spinner
-        android:id="@+id/productType_spinner"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_editText"
-        android:layout_alignLeft="@id/title_editText"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
-        android:autofillHints="Product Type"/>
-
-    <EditText
-        android:id="@+id/desc_editText"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/productType_spinner"
-        android:layout_alignLeft="@id/productType_spinner"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
-        android:hint="Description"
-        android:gravity="top"/>
-    <EditText
-        android:id="@+id/price_edittext"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Price"
-        android:layout_below="@id/location_edittext"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
-        android:inputType="number"
-        android:layout_marginTop="10dp"
-        android:layout_alignStart="@id/desc_editText"/>
-
-    <EditText
-        android:id="@+id/location_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Enter Zipcode"
-        android:background="@drawable/edittext_background"
-        android:padding="10dp"
-        android:inputType="number"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/desc_editText"
-        android:layout_alignStart="@id/price_edittext"/>
-    <TextView
-        android:id="@+id/city_textview"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/location_edittext"
-        android:layout_toRightOf="@id/location_edittext"
-        android:layout_marginLeft="5dp"/>
-
-    <Switch
-        android:id="@+id/trade_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/price_edittext"
-        android:layout_marginTop="20dp"
-        android:layout_alignLeft="@id/location_edittext"
-        android:textOff="No"
-        android:textOn="Yes"
-        android:hint="Do you want to trade this item  "/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/post_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Post"
-        android:layout_below="@id/trade_switch"
-        android:background="@drawable/button_background"
-        android:textColor="@color/colorWhite"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"/>
+                    <Space
+                        android:id="@+id/dummy"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="invisible" />
 
-</RelativeLayout>
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="120dp"
+                        android:layout_height="150dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_margin="10dp"
+                        android:adjustViewBounds="true"
+                        android:background="#00000000"
+                        android:scaleType="fitCenter"
+                        android:tag="0"
+                        app:srcCompat="@drawable/image_upload" />
+
+                    <Button
+                        android:id="@+id/capture_button"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/imageButton"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toLeftOf="@id/dummy"
+                        android:background="@drawable/button_background"
+                        android:text="Capture"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/gallery_button"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@+id/imageButton"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_toRightOf="@id/capture_button"
+                        android:background="@drawable/button_background"
+                        android:text="Gallery"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
+
+
+                    <EditText
+                        android:id="@+id/title_editText"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/capture_button"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="55dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/edittext_background"
+                        android:hint="Title"
+                        android:padding="10dp"
+                        android:textColorHint="@color/colorAccent" />
+
+                    <Spinner
+                        android:id="@+id/productType_spinner"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/title_editText"
+                        android:layout_alignLeft="@id/title_editText"
+                        android:layout_marginTop="10dp"
+                        android:autofillHints="Product Type"
+                        android:background="@drawable/edittext_background"
+                        android:padding="10dp" />
+
+                    <EditText
+                        android:id="@+id/desc_editText"
+                        android:layout_width="300dp"
+                        android:layout_height="150dp"
+                        android:layout_below="@id/productType_spinner"
+                        android:layout_alignLeft="@id/productType_spinner"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="top"
+                        android:hint="Description"
+                        android:padding="10dp" />
+
+                    <EditText
+                        android:id="@+id/price_edittext"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/location_edittext"
+                        android:layout_alignStart="@id/desc_editText"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext_background"
+                        android:hint="Price"
+                        android:inputType="number"
+                        android:padding="10dp" />
+
+                    <EditText
+                        android:id="@+id/location_edittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/desc_editText"
+                        android:layout_alignStart="@id/price_edittext"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/edittext_background"
+                        android:hint="Enter Zipcode"
+                        android:inputType="number"
+                        android:padding="10dp" />
+
+                    <TextView
+                        android:id="@+id/city_textview"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/location_edittext"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/location_edittext" />
+
+                    <Switch
+                        android:id="@+id/trade_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/price_edittext"
+                        android:layout_alignLeft="@id/location_edittext"
+                        android:layout_marginTop="20dp"
+                        android:hint="Do you want to trade this item  "
+                        android:textOff="No"
+                        android:textOn="Yes" />
+
+
+                    <Button
+                        android:id="@+id/post_button"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/trade_switch"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/button_background"
+                        android:text="Post"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+            </ScrollView>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
-</ScrollView>
 </RelativeLayout>

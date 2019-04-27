@@ -4,59 +4,78 @@
     android:layout_width="match_parent"
     android:layout_height="160dp">
 
-    <android.support.v7.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
         android:layout_width="380dp"
         android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
         card_view:cardCornerRadius="10dp">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
-            >
+            android:layout_gravity="left">
+
             <ImageView
-                android:id="@+id/image_imageview"
+                android:id="@+id/image_imageview_offer"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:padding="5dp" />
+
             <TextView
-                android:id="@+id/title_textview"
+                android:id="@+id/title_textview_offer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:textColor="@android:color/black"
-                android:hint="Title"
-                android:textSize="22sp"
-                android:layout_toRightOf="@id/image_imageview"
                 android:layout_centerVertical="true"
-                android:paddingLeft="20dp"/>
+                android:layout_toRightOf="@id/image_imageview_offer"
+                android:hint="Title"
+                android:gravity="left"
+                android:paddingLeft="20dp"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
 
             <TextView
-                android:id="@+id/date_textview"
+                android:id="@+id/date_textview_offer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:hint="Post date"
                 android:gravity="right"
-                android:textSize="15sp"
-                />
+                android:hint="Post date"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/price_textview"
+                android:id="@+id/price_textview_offer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title_textview"
-                android:layout_alignLeft="@id/title_textview"
-                android:textColor="@android:color/black"
+                android:layout_below="@id/title_textview_offer"
+                android:layout_alignLeft="@id/title_textview_offer"
+                android:gravity="left"
                 android:paddingLeft="20dp"
                 android:hint="Price"
-                android:gravity="left"
-                android:textSize="22sp"/>
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <ImageButton
+                android:id="@+id/deleteBtn_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_delete" />
+
+            <ImageView
+                android:id="@+id/trade_ib_offer"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@id/deleteBtn_offer"
+                android:background="@android:color/transparent"
+                android:padding="5dp"
+                android:scaleType="fitCenter" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>
