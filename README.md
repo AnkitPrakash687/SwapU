@@ -60,3 +60,19 @@ Target SDK version is 28
 * Product activity functionality
 * Account fragment functionality
 * Login activity functionality
+
+## Completion Status
+
+| Feature  | Status |
+| ------------- | ------------- |
+| Post product to sell  | completed  |
+| Display product in the nearby location  | completed    |
+| Search product using search key word  | completed     |
+| Change the location  | completed      |
+| Send message to the seller  | completed      |
+| Instant chat with the seller  | completed     |
+| Check the messages received  | completed      |
+| Check the product posted by the user  | pending  |
+| Sort product on price range  | pending  |
+| Notification for the message received  | pending  |
+| Add multiple image to the product  | pending  |
