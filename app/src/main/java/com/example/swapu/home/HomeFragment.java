@@ -204,7 +204,7 @@ public class HomeFragment extends Fragment implements GetNearByLocation.GetNearB
         nearByZipCodeList.add(Integer.parseInt(zipCode.trim()));
         String distance = "30";
         StringBuilder url = new StringBuilder();
-        url.append("https://www.zipcodeapi.com/rest/j8e1e5TnyhPXPweFQMWcKRExQOxtdAoxviq6JCJeYfiunhnKW965UBd4iAE8vRzj/radius.json/");
+        url.append("https://www.zipcodeapi.com/rest/8vWWY6NlOVgWEAmcC4x98KvDBOXMSxgqNbXEz38rQLI2jWO4Vn31jI0h8mlFScUD/radius.json/");
         url.append(zipCode.trim() + "/");
         url.append(distance + "/mile");
         // String urll = " https://www.zipcodeapi.com/rest/j8e1e5TnyhPXPweFQMWcKRExQOxtdAoxviq6JCJeYfiunhnKW965UBd4iAE8vRzj/radius.json/64468/100/mile";

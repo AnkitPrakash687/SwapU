@@ -57,7 +57,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/trade_ib"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

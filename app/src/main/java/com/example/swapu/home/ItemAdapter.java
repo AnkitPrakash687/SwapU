@@ -38,7 +38,7 @@ public class ItemAdapter extends ArrayAdapter<ItemModel> {
         TextView title = convertView.findViewById(R.id.title_textview);
         TextView date = convertView.findViewById(R.id.date_textview);
         TextView price = convertView.findViewById(R.id.price_textview);
-        ImageButton tradeIb = convertView.findViewById(R.id.trade_ib);
+        ImageView tradeIb = convertView.findViewById(R.id.trade_ib);
         ItemModel itemModel = item.get(position);
         imageview.setImageBitmap(itemModel.getImage());
         title.setText(itemModel.getTitle());
